@@ -1,19 +1,27 @@
 const path = require('path');
+const fs = require('fs');
+const cheerio = require('cheerio');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
-//console.log(isDev,'isDev')
+const entryArr = isDev?['react-hot-loader/patch',// react热更新(局部刷新页面)
+    // 这里reload=true的意思是，如果碰到不能hot reload的情况，就整页刷新。
+    'webpack-hot-middleware/client?reload=true',
+    path.resolve(__dirname,'../src/index.js')
+  ]:[path.resolve(__dirname,'../src/index.js')]
+
+if (!isDev) {
+  let HTML = fs.readFileSync(path.resolve(__dirname, '../src/index.html'), 'utf8');
+  let $ = cheerio.load(HTML);
+  $('script').remove();
+  fs.writeFileSync(path.resolve(__dirname, '../src/index.html'), $.html());
+}
 
 module.exports = {
   //入口文件的路径
   entry:{
-    app:[
-      'react-hot-loader/patch',// react热更新(局部刷新页面)
-      // 这里reload=true的意思是，如果碰到不能hot reload的情况，就整页刷新。
-      'webpack-hot-middleware/client?reload=true',
-      path.resolve(__dirname,'../src/index.js')
-    ]
+    app:entryArr
   },
   //出口文件的路径
   output:{
