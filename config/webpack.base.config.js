@@ -7,7 +7,14 @@ const isDev = process.env.NODE_ENV === 'development';
 
 module.exports = {
   //入口文件的路径
-  entry:path.resolve(__dirname,'../src/index.js'),
+  entry:{
+    app:[
+      'react-hot-loader/patch',// react热更新(局部刷新页面)
+      // 这里reload=true的意思是，如果碰到不能hot reload的情况，就整页刷新。
+      'webpack-hot-middleware/client?reload=true',
+      path.resolve(__dirname,'../src/index.js')
+    ]
+  },
   //出口文件的路径
   output:{
     path:path.resolve(__dirname,'../dist'),
