@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -13,16 +14,23 @@ module.exports = merge(baseWebpackConfig,{
       filename: "css/[name].[contenthash:8].css",
       chunkFilename: "css/[id].[contenthash:8].css"
     }),
+    // 根据模块的相对路径生成 HASH 作为模块 ID
+    new webpack.HashedModuleIdsPlugin()
   ],
   optimization:{
     runtimeChunk:{
       name: "manifest"
     },
     splitChunks:{
+      //chunks: 'all',
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
-          name: "vendors",
+          name(module,chunks,chcheGroupKey){
+            // 获取模块名称
+            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+            return `npm.${packageName.replace('@', '')}`; 
+          },
           priority: -20,
           chunks: "all"
         }
@@ -57,5 +65,5 @@ module.exports = merge(baseWebpackConfig,{
       '@':`${path.resolve(__dirname,'../src')}`
     },
   }
-})
+});
 

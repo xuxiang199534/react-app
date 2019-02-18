@@ -29,6 +29,7 @@ class Home extends Component {
     return (
       <div>
         <img src={img} />
+        <div>ss</div>
         {/* <Button type="primary" onClick={this.requst.bind(this)}>请求</Button> */}
       </div>
     )

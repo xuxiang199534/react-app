@@ -6,7 +6,7 @@ import routes from '@/routes';
 
 class App extends Component{
   constructor(props) {
-    super(props)
+    super(props);
   }
   render(){
     const { store } = this.props.store;

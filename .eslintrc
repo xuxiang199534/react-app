@@ -35,7 +35,7 @@
     // 允许直接返回reactdom render方法的内容
     "react/no-render-return-value": [0],
     // 不允许出现分号
-    "semi": ["warn", "never"],
+    "semi": ["warn", "always"],
     // 建议使用 let 或 const 而不是 var
     "no-var": "warn"
   },
