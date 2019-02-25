@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import request from '@/constants/fetchRequest';
 import {Layout, Menu, Icon,} from 'antd';
 const { SubMenu } = Menu;
 const { Sider } = Layout;
@@ -8,6 +9,18 @@ export default class MainLayout extends Component{
     super(props);
     this.state = {
     };
+  }
+  componentDidMount(){
+    let params = {
+      page:1,
+      rows:10,
+      group_name:"",
+      name:"",
+      group_type:"",
+      is_enable:""
+    };
+    let data = request('/nbproperty/group/user-list', params);
+    //console.log(data,'fetch')
   }
   render(){
     return (

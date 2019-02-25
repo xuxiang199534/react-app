@@ -1,5 +1,5 @@
 
-import request from '@/units/request';
+import request from '@/constants/fetchRequest';
 
 const homeService = {
   getList:( parameter )=>{

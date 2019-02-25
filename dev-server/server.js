@@ -29,4 +29,4 @@ app.use(devMiddleware(compiler, {
 app.use(hotMiddleware(compiler));
 app.listen(port,()=>{
   console.log('server start on 127.0.0.1:8080');
-})
+});

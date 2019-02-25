@@ -10,6 +10,11 @@ const baseWebpackConfig = require('./webpack.base.config');
 module.exports = merge(baseWebpackConfig,{
   mode: 'production',
   plugins:[
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production') //定义编译环境
+      }
+    }),
     new MiniCssExtractPlugin({
       filename: "css/[name].[contenthash:8].css",
       chunkFilename: "css/[id].[contenthash:8].css"

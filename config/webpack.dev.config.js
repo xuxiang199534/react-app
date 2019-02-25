@@ -26,6 +26,11 @@ module.exports = merge(baseWebpackConfig,{
     ]
   },
   plugins:[
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('development') //定义编译环境
+      }
+    }),
     new webpack.HotModuleReplacementPlugin()//热更新
   ],
 })
