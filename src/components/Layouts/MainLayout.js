@@ -3,6 +3,7 @@ import request from '@/constants/fetchRequest';
 import {Layout, Menu, Icon,} from 'antd';
 const { SubMenu } = Menu;
 const { Sider } = Layout;
+import MainHeader from './MainHeader';
 
 export default class MainLayout extends Component{
   constructor(props) {
@@ -25,7 +26,8 @@ export default class MainLayout extends Component{
   render(){
     return (
       <Layout>
-        <Sider style={{ minHeight: document.body.scrollHeight - 64 }}>
+        <MainHeader />
+        {/* <Sider style={{ minHeight: document.body.scrollHeight - 64 }}>
           <Menu
             theme="dark"
             mode="inline"
@@ -40,7 +42,7 @@ export default class MainLayout extends Component{
               <Menu.Item key="4">option4</Menu.Item>
             </SubMenu>
           </Menu>
-        </Sider>
+        </Sider> */}
         {/* <Layout>
           <Header style={{ background: '#fff', padding: 0 }}>
             <Icon

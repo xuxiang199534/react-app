@@ -1,0 +1,95 @@
+@base:#f938ab;
+@width:20px;
+@height:30px;
+@mySelector:a;
+@box:main-header;
+@contnet:main-content;
+@background:{
+  background: red;
+}
+.card{
+  font-size:400px; 
+}
+.@{box}{
+  @background();
+  &-c{
+    font-size: 80px;
+  }
+  &-d{
+    color: aqua;
+  }
+  &-g{
+    .card();
+  }
+  @media screen{
+    @media (max-width:1200px){
+      background: yellow;
+    }
+  }
+  // @media screen {
+  //   @media {max-width:720px}{
+  //     background:yellow
+  //   }
+  // }
+}
+.@{mySelector}{
+  color: @base;
+  width: @width*2;
+  height: @height+50;
+}
+.b{
+  color: @base;
+  width: @width;
+  height: @height;
+}
+.border(@a:10px,@b:50px,@c:30px,@color:#f938ab){
+  border:solid 1px @color;
+  box-shadow: @arguments
+}
+.@{contnet}{
+  .border()
+}
+
+// .card(){
+//   height: 100px;
+//   width: 100px;
+//   background: #efefef;
+//   .a(@w:30px){
+//     width: @w;
+//     .b(@h:30px){
+//       height: @h;
+//       width: @w;
+//     }
+//   } 
+// }
+// .cardA > .a > .b(400px) 
+
+#bundle {
+  .button () {
+    display: block;
+    border: 1px solid black;
+    background-color: grey;
+    &:hover { background-color: white }
+  }
+}
+.button .a{
+  color: orange;
+  #bundle > .button;
+}
+
+#card{
+  .border(@width,@color,@style) when (@width>100px) and (@color=#999){
+    border:@style @color @width;
+  }
+  .background(@color) when not (@color>=#222){
+    background: @color;
+  }
+  .font(@size:20px) when (@size>50px),(@size<100px){
+    font-size:@size 
+  }
+}
+.size{
+  #card>.border(200px,#999,solid)
+}
+
+

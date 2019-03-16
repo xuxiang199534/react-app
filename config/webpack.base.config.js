@@ -65,6 +65,7 @@ module.exports = {
               ]
             }
           },
+          'less-loader'
         ]
       },
       {
